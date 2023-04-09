@@ -1,0 +1,22 @@
+events {}
+
+http { 
+	server {
+		listen 443 ssl default_server;
+		listen [::]:443 ssl default_server;
+
+		ssl_protocols TLSv1.2;
+		ssl_certificate /etc/nginx/certs/default.crt;
+		ssl_certificate_key /etc/nginx/certs/default.key;
+
+		root /var/www/html;
+
+		index index.html index.htm index.nginx-debian.html;
+
+		server_name nlocusso.42.fr;
+
+		location / {
+			try_files $uri $uri/ =404;
+		}
+	}
+}

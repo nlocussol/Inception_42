@@ -1,0 +1,28 @@
+version: "3.3"
+services:
+        nginx:
+                build:
+                        context: .
+                        dockerfile: requirements/nginx/Dockerfile 
+                image: nginx
+                container_name: nginx_container
+                ports:
+                        - "443:443"
+                volumes:
+                        - shared-volume:/home/adamiens/data
+                restart: always
+        wordpress:
+                build:
+                        context: .
+                        dockerfile: requirements/wordpress/Dockerfile 
+                image: wordpress
+                container_name: wordpress_container
+                ports:
+                        - "9000:9000"
+                        - "3306:3306"
+                volumes:
+                        - shared-volume:/home/adamiens/data
+                restart: always
+
+volumes:
+        shared-volume:
