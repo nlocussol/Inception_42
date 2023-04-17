@@ -9,7 +9,9 @@ services:
                 ports:
                         - "443:443"
                 volumes:
-                        - /home/nlocusso/data:/volumes
+                        - dbdata:/volumes
+                depends_on:
+                        - wordpress
                 restart: always
         wordpress:
                 build:
@@ -19,7 +21,30 @@ services:
                 container_name: wordpress_container
                 ports:
                         - "9000:9000"
+                volumes:
+                        - dbdata:/volumes
+                restart: always
+        mariadb:
+                build:
+                        context: .
+                        dockerfile: requirements/mariadb/Dockerfile 
+                image: mariadb
+                container_name: mariadb_container
+                ports:
                         - "3306:3306"
                 volumes:
-                        - /home/nlocusso/data:/volumes
+                        - mariadb:/volumes
                 restart: always
+volumes:
+  dbdata:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/home/nlocusso/data/wordpress/'
+  mariadb:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/home/nlocusso/data/mariadb/'

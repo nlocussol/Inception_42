@@ -1,0 +1,5 @@
+[mysqld]
+user = root
+datadir = /volumes
+port = 3306
+log-bin = /app/mysql/mysql-bin

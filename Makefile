@@ -2,15 +2,20 @@ NAME    = inception
 
 all: ${NAME}
 
-IMAGES: nginx wordpress alpine:3.16
+IMAGES = nginx wordpress alpine:3.16 mariadb
 
-CONTAINER: nginx_container wordpress_container
+CONTAINER = nginx_container wordpress_container mariadb_container
+
+SHELL := /bin/bash
 
 ${NAME} : build
 
 build:
-	docker build srcs/requirements/nginx -t nginx
 	docker build srcs/requirements/wordpress -t wordpress
+	docker build srcs/requirements/mariadb -t mariadb
+	docker build srcs/requirements/nginx -t nginx
+	set -a
+	source srcs/.env
 	docker-compose -f srcs/docker-compose.yml up --detach
 
 clean:
@@ -19,6 +24,10 @@ clean:
 	docker rmi -f $(IMAGES)
 	docker-compose -f srcs/docker-compose.yml down
 
-re: clean all
+fclean: clean
+	docker rm -f $(docker ps -aq)
+	docker rmi -f $(docker images -aq)
 
-.PHONY: all build clean re
+re: fclean all
+
+.PHONY: all build clean fclean re
