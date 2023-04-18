@@ -15,7 +15,7 @@ build:
 	docker build srcs/requirements/mariadb -t mariadb
 	docker build srcs/requirements/nginx -t nginx
 	set -a
-	source srcs/.env
+	sources srcs/.env
 	docker-compose -f srcs/docker-compose.yml up --detach
 
 clean:
