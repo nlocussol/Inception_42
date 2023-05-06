@@ -12,6 +12,10 @@ services:
                         - dbdata:/volumes
                 depends_on:
                         - wordpress
+                env_file:
+                        - .env
+                networks:
+                        - localhost
                 restart: always
         wordpress:
                 build:
@@ -23,6 +27,12 @@ services:
                         - "9000:9000"
                 volumes:
                         - dbdata:/volumes
+                depends_on:
+                        - mariadb
+                env_file:
+                        - .env
+                networks:
+                        - localhost
                 restart: always
         mariadb:
                 build:
@@ -33,7 +43,11 @@ services:
                 ports:
                         - "3306:3306"
                 volumes:
-                        - mariadb:/volumes
+                        - mariadb:/var/lib/mysql/
+                env_file:
+                        - .env
+                networks:
+                        - localhost
                 restart: always
 volumes:
   dbdata:
@@ -48,3 +62,7 @@ volumes:
       type: 'none'
       o: 'bind'
       device: '/home/nlocusso/data/mariadb/'
+
+networks:
+        localhost:
+                driver: bridge

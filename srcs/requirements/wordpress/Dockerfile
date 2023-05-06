@@ -1,7 +1,7 @@
-FROM alpine:3.16
+FROM	alpine:3.16
 
 RUN     apk update && apk upgrade && \
-        apk add --no-cache php php-fpm php-mysqli lighttpd wget openrc \
+        apk add --no-cache curl php php-phar php-fpm php-mysqli lighttpd wget openrc \
 	&& rc-update add lighttpd default \
 	&& mkdir /volumes && cd /volumes && \
         wget http://wordpress.org/latest.tar.gz 2>/dev/null && \
@@ -10,10 +10,12 @@ RUN     apk update && apk upgrade && \
         chown -R lighttpd /volumes/wordpress && \
         ln -s /volumes/wordpress /var/www/localhost/htdocs/wordpress
 
-COPY tools/php-fpm /etc/php8/php-fpm.d/www.conf
-#COPY tools/wp-config /volumes/wordpress/wp-config.php
- 
-EXPOSE 3306:3306
-EXPOSE 9000:9000
+COPY	tools/wp-config.php /volumes/wordpress/wp-config.php
+COPY	tools/script.sh /script.sh
+COPY	tools/php-fpm /etc/php8/php-fpm.d/www.conf
 
-CMD ["php-fpm8", "-FR"]
+RUN	chmod 777 /script.sh
+
+EXPOSE	9000:9000
+
+CMD	["sh", "./script.sh"]

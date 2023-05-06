@@ -1,10 +1,14 @@
-FROM	alpine:3.16
+FROM alpine:3.16
 
-RUN 	apk update && apk upgrade \
-	&& apk add mariadb mariadb-client \
-	&& mkdir /volumes
+RUN     apk update && apk upgrade && \
+        apk add --no-cache mysql mysql-client && \
+        mkdir -p /run/mysqld
 
-COPY	conf /etc/mysql/my.conf
-COPY	tools/startup.sh /start.sh
+COPY tools/start.sh /start.sh
 
-CMD	["/start.sh"]
+RUN chmod 777 /start.sh
+
+EXPOSE 3306
+
+ENTRYPOINT ["sh", "./start.sh"]
+
