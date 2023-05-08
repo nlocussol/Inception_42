@@ -24,6 +24,6 @@ fclean:
 	docker rmi -f `docker images -aq`
 	docker volume rm -f `docker volume ls`
 
-re: fclean all
+re: clean all
 
 .PHONY: all build clean fclean re
