@@ -19,13 +19,14 @@ http{
         }
 
         location ~ \.php$ {
-	    fastcgi_split_path_info ^(.+\.php)(/.+)$;
-	    include    /etc/nginx/fastcgi.conf;
+            try_files       $uri =404;
+	    fastcgi_split_path_info ^(.+\.php)(.*)$;
+	    include    fastcgi_params;
             fastcgi_pass wordpress:9000;
             fastcgi_index    index.php;
+	    fastcgi_param   SCRIPT_FILENAME $document_root$fastcgi_script_name; 
         }
 
-        access_log    /var/log/nginx/access.log;
         error_log    /var/log/nginx/error_log;
     }
         

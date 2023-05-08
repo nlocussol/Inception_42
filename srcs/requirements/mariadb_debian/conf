@@ -1,8 +1,0 @@
-[mysqld]
-user = root
-datadir = /volumes
-port = 3306
-bind-address=0.0.0.0
-socket=/var/run/mysql/mysql.sock
-skip_networking=false
-skip-name-resolve

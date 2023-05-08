@@ -5,10 +5,11 @@ RUN     apk update && apk upgrade && \
         mkdir -p /run/mysqld
 
 COPY tools/start.sh /start.sh
+COPY conf /etc/my.cnf
 
 RUN chmod 777 /start.sh
 
 EXPOSE 3306
 
-ENTRYPOINT ["sh", "./start.sh"]
+ENTRYPOINT ["sh", "/start.sh"]
 

@@ -1,8 +1,9 @@
 #!/bin/sh
-sed -i 's/database_name_here/'$DB_NAME'/g'  /volumes/wordpress/wp-config.php
-sed -i 's/username_here/'$DB_USER'/g'  /volumes/wordpress/wp-config.php
-sed -i 's/password_here/'$DB_PASSWORD'/g'  /volumes/wordpress/wp-config.php
-sed -i 's/localhost/mariadb/g'  /volumes/wordpress/wp-config.php 
+
+sed -i "s|database_name_here|${DB_NAME}|g"  /volumes/wordpress/wp-config.php
+sed -i "s|username_here|${DB_USER}|g"  /volumes/wordpress/wp-config.php
+sed -i "s|password_here|${DB_PASSWORD}|g"  /volumes/wordpress/wp-config.php
+sed -i "s|localhost|mariadb|g"  /volumes/wordpress/wp-config.php 
 
 curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 chmod +x wp-cli.phar
