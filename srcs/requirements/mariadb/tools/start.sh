@@ -1,6 +1,7 @@
 #!/bin/sh
 
 mysql_install_db --basedir=/usr --datadir=/var/lib/mysql --user=root --rpm > /dev/null
+
 echo "CREATE DATABASE IF NOT EXISTS ${DB_NAME};
 GRANT ALL PRIVILEGES ON ${DB_NAME}.* TO 'user_here'@'%' IDENTIFIED BY 'pass_here';
 FLUSH PRIVILEGES;" > /database

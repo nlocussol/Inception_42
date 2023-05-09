@@ -5,24 +5,22 @@ CONTAINER = nginx_container wordpress_container mariadb_container
 all : build
 
 build:
-	docker build srcs/requirements/wordpress -t wordpress
-	docker build srcs/requirements/mariadb -t mariadb
-	docker build srcs/requirements/nginx -t nginx
 	docker-compose -f srcs/docker-compose.yml up --detach
 	docker ps
 
-clean:
-	docker stop $(CONTAINER)
-	docker rm -f $(CONTAINER)
-	docker rmi -f $(IMAGES)
-	docker-compose -f srcs/docker-compose.yml down
+stop:
+	docker-compose -f srcs/docker-compose.yml stop
 
 fclean:
-	sudo rm -rf /home/nlocusso/data/wordpress/*
-	sudo rm -rf /home/nlocusso/data/mariadb/*
+	docker stop $(CONTAINER)
 	docker rm -f `docker ps -aq`
 	docker rmi -f `docker images -aq`
 	docker volume rm -f `docker volume ls`
+	docker-compose -f srcs/docker-compose.yml down
+
+volume:
+	sudo rm -rf /home/nlocusso/data/wordpress/*
+	sudo rm -rf /home/nlocusso/data/mariadb/*
 
 re: clean all
 

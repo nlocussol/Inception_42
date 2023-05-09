@@ -1,9 +1,7 @@
 version: "3.3"
 services:
         nginx:
-                build:
-                        context: .
-                        dockerfile: requirements/nginx/Dockerfile 
+                build: requirements/nginx
                 image: nginx
                 container_name: nginx_container
                 ports:
@@ -18,9 +16,7 @@ services:
                         - localhost
                 restart: always
         wordpress:
-                build:
-                        context: .
-                        dockerfile: requirements/wordpress/Dockerfile 
+                build: requirements/wordpress
                 image: wordpress
                 container_name: wordpress_container
                 ports:
@@ -35,9 +31,7 @@ services:
                         - localhost
                 restart: always
         mariadb:
-                build:
-                        context: .
-                        dockerfile: requirements/mariadb/Dockerfile 
+                build: requirements/mariadb
                 image: mariadb
                 container_name: mariadb_container
                 ports:

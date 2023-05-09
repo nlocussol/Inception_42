@@ -1,39 +1,26 @@
-events {}
+server{
+	listen 443 ssl;
+	listen [::]:443 ssl;
 
-http{
-    server{
-        listen 443 ssl;
-        listen [::]:443 ssl;
-        
-        server_name nlocusso.42.fr;
+	server_name localhost nlocusso.42.fr;
 
-        ssl_certificate    /etc/nginx/certs/default.crt;
-        ssl_certificate_key    /etc/nginx/certs/default.key;
-        ssl_protocols    TLSv1.2 TLSv1.3;
+	ssl_certificate    /etc/nginx/certs/default.crt;
+	ssl_certificate_key    /etc/nginx/certs/default.key;
 
-        root        /volumes/wordpress/ ;
-        index	    index.php index.html index.htm;
+	root        /volumes/wordpress/ ;
+	index	    index.php index.html index.htm;
 
-        location / {
-            try_files $uri $uri/ = 404;
-        }
+	location / {
+	    try_files $uri $uri/ = 404;
+	}
 
-        location ~ \.php$ {
-            try_files       $uri =404;
-	    fastcgi_split_path_info ^(.+\.php)(.*)$;
-	    include    fastcgi_params;
-            fastcgi_pass wordpress:9000;
-            fastcgi_index    index.php;
-	    fastcgi_param   SCRIPT_FILENAME $document_root$fastcgi_script_name; 
-        }
+	location ~ \.php$ {
+		try_files $uri /index.php =404;
+		fastcgi_pass wordpress:9000;
+		fastcgi_index index.php;
+		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+		include fastcgi_params;
+	}
 
-        error_log    /var/log/nginx/error_log;
-    }
-        
-    server{
-        listen 80;
-        
-        server_name nlocusso.42.fr;
-        return 301 https://$server_name$request_uri;    
-    }
+	error_log    /var/log/nginx/error_log;
 }

@@ -10,7 +10,7 @@ RUN     apk update && apk upgrade \
      	-newkey rsa:2048 -keyout /etc/nginx/certs/default.key \
      	-out /etc/nginx/certs/default.crt 2>/dev/null
 
-COPY conf /etc/nginx/nginx.conf
+COPY conf /etc/nginx/http.d/default.conf
 
 EXPOSE 443
 
