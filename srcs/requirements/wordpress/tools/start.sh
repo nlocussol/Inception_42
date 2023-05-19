@@ -16,4 +16,6 @@ echo "define('WP_CACHE', true);" >> /volumes/wordpress/wp-config.php
 echo "define('WP_REDIS_HOST', 'redis');" >> /volumes/wordpress/wp-config.php
 echo "define('WP_REDIS_PORT', '6379');" >> /volumes/wordpress/wp-config.php
 
+wp plugin install --path='/volumes/wordpress' redis-cache --activate
+
 exec php-fpm8 -F

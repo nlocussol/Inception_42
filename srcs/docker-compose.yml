@@ -44,8 +44,6 @@ services:
                 build: requirements/bonus/redis
                 image: redis
                 container_name: redis_container
-                ports:
-                        - '6379:6379'
                 volumes:
                         - cache:/data
                 networks:

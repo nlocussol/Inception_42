@@ -13,15 +13,16 @@ stop:
 
 clean:
 	docker stop $(CONTAINER)
-	docker rm -f `docker ps -aq`
-	docker rmi -f `docker images -aq`
+	docker rm -f $(CONTAINER)
+	#docker rmi -f `docker images -aq`
 	docker volume rm -f `docker volume ls`
 	docker-compose -f srcs/docker-compose.yml down
 
 volume:
 	sudo rm -rf /home/nlocusso/data/wordpress/*
 	sudo rm -rf /home/nlocusso/data/mariadb/*
+	sudo rm -rf /home/nlocusso/data/redis/*
 
-re: clean all
+re: volume clean all
 
 .PHONY: all build clean clean re
