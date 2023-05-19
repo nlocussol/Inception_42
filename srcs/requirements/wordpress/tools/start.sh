@@ -12,4 +12,8 @@ wp core install --path='/volumes/wordpress' --url="${DOMAIN_NAME}" --title="Ince
 
 wp user create --path='/volumes/wordpress' ${WP_USER} ${WP_USER_MAIL} --role=subscriber --user_pass=${WP_USER_PASSWD}
 
+echo "define('WP_CACHE', true);" >> /volumes/wordpress/wp-config.php
+echo "define('WP_REDIS_HOST', 'redis');" >> /volumes/wordpress/wp-config.php
+echo "define('WP_REDIS_PORT', '6379');" >> /volumes/wordpress/wp-config.php
+
 exec php-fpm8 -F
