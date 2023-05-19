@@ -4,8 +4,8 @@ server{
 
 	server_name localhost nlocusso.42.fr;
 
-	ssl_certificate    /etc/nginx/certs/default.crt;
-	ssl_certificate_key    /etc/nginx/certs/default.key;
+	ssl_certificate    CERTSdefault.crt;
+	ssl_certificate_key    CERTSdefault.key;
 	ssl_protocols TLSv1.2 TLSv1.3;
 
 	root        /volumes/wordpress/ ;

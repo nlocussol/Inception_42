@@ -9,7 +9,4 @@ COPY conf /etc/my.cnf
 
 RUN chmod 777 /start.sh
 
-EXPOSE 3306
-
 ENTRYPOINT ["sh", "/start.sh"]
-

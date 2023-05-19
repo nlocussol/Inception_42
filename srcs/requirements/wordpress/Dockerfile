@@ -8,6 +8,4 @@ COPY	tools/php-fpm /etc/php8/php-fpm.d/www.conf
 
 RUN	chmod 777 /script.sh
 
-EXPOSE	9000:9000
-
 CMD	["sh", "/script.sh"]

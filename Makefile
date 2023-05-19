@@ -5,13 +5,13 @@ CONTAINER = nginx_container wordpress_container mariadb_container
 all : build
 
 build:
-	docker-compose -f srcs/docker-compose.yml up --detach
+	docker-compose -f srcs/docker-compose.yml up --build --detach
 	docker ps
 
 stop:
 	docker-compose -f srcs/docker-compose.yml stop
 
-fclean:
+clean:
 	docker stop $(CONTAINER)
 	docker rm -f `docker ps -aq`
 	docker rmi -f `docker images -aq`
@@ -24,4 +24,4 @@ volume:
 
 re: clean all
 
-.PHONY: all build clean fclean re
+.PHONY: all build clean clean re

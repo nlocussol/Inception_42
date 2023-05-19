@@ -19,8 +19,6 @@ services:
                 build: requirements/wordpress
                 image: wordpress
                 container_name: wordpress_container
-                ports:
-                        - "9000:9000"
                 volumes:
                         - dbdata:/volumes
                 depends_on:
@@ -34,8 +32,6 @@ services:
                 build: requirements/mariadb
                 image: mariadb
                 container_name: mariadb_container
-                ports:
-                        - "3306:3306"
                 volumes:
                         - mariadb:/var/lib/mysql/
                 env_file:
@@ -43,6 +39,16 @@ services:
                 networks:
                         - localhost
                 restart: always
+                #redis:
+                #build: requirements/bonus/redis
+                #image: redis
+                #container_name: redis_container
+                #env_file:
+                #        - .env
+                #networks:
+                #        - localhost
+                #restart: always
+
 volumes:
   dbdata:
     driver: local
