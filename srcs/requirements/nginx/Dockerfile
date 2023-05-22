@@ -5,8 +5,6 @@ RUN     apk update && apk upgrade \
 
 COPY tools/start.sh /start.sh
 
-RUN chmod +x /start.sh
-
 COPY conf /etc/nginx/http.d/default.conf
 
 CMD ["sh", "/start.sh"]

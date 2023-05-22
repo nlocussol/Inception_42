@@ -1,9 +1,9 @@
-version: "3.3"
+version: "3.7"
 services:
         nginx:
                 build: requirements/nginx
                 image: nginx
-                container_name: nginx_container
+                container_name: nginx
                 ports:
                         - "443:443"
                 volumes:
@@ -18,7 +18,7 @@ services:
         wordpress:
                 build: requirements/wordpress
                 image: wordpress
-                container_name: wordpress_container
+                container_name: wordpress
                 volumes:
                         - dbdata:/volumes
                 depends_on:
@@ -32,7 +32,7 @@ services:
         mariadb:
                 build: requirements/mariadb
                 image: mariadb
-                container_name: mariadb_container
+                container_name: mariadb
                 volumes:
                         - mariadb:/var/lib/mysql
                 env_file:
@@ -43,7 +43,7 @@ services:
         redis:
                 build: requirements/bonus/redis
                 image: redis
-                container_name: redis_container
+                container_name: redis
                 networks:
                         - localhost
                 restart: always

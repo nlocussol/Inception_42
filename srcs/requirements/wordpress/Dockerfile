@@ -3,12 +3,17 @@ FROM	alpine:3.16
 RUN     apk update && apk upgrade && \
 	apk add php php-phar php-fpm php-mysqli php-iconv mysql-client \
 	php-json php-curl php-dom php-exif php-fileinfo php-mbstring php-openssl php-xml php-zip \
-	php-tokenizer curl
+	php-tokenizer && mkdir /volumes/ && \
+	cd /volumes/ && \
+	wget https://wordpress.org/wordpress-6.2.2.tar.gz -O latest.tar.gz && \
+	tar xzf latest.tar.gz && rm latest.tar.gz && \
+	cd && \
+	wget -O wp-cli.phar https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
+	chmod +x wp-cli.phar && \
+	mv wp-cli.phar /usr/local/bin/wp
 
 COPY	tools/start.sh /start.sh
 
 COPY	tools/php-fpm /etc/php8/php-fpm.d/www.conf
-
-RUN	chmod 777 /start.sh
 
 CMD	["sh", "/start.sh"]
