@@ -1,6 +1,6 @@
-IMAGES = nginx wordpress alpine:3.16 mariadb
+IMAGES = nginx wordpress alpine:3.16 mariadb redis
 
-CONTAINER = nginx_container wordpress_container mariadb_container
+CONTAINER = nginx_container wordpress_container mariadb_container redis_container
 
 all : build
 
@@ -21,7 +21,6 @@ clean:
 volume:
 	sudo rm -rf /home/nlocusso/data/wordpress/*
 	sudo rm -rf /home/nlocusso/data/mariadb/*
-	sudo rm -rf /home/nlocusso/data/redis/*
 
 re: volume clean all
 

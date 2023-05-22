@@ -1,7 +1,9 @@
 FROM	alpine:3.16
 
 RUN     apk update && apk upgrade && \
-        apk add --no-cache curl php8 php8-phar php8-fpm php8-mysqli php8-iconv php8-redis mysql-client
+	apk add php php-phar php-fpm php-mysqli php-iconv mysql-client \
+	php-json php-curl php-dom php-exif php-fileinfo php-mbstring php-openssl php-xml php-zip \
+	php-tokenizer curl
 
 COPY	tools/start.sh /start.sh
 

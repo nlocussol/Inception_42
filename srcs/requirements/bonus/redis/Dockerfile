@@ -1,8 +1,6 @@
-FROM	debian:buster-slim
+FROM	alpine:3.16
 
-RUN	apt-get -y update \
-	&& apt-get -y upgrade \
-	&& apt install -y redis-server \
-	&& sed -i "s|bind 127.0.0.1 ::1|# bind 127.0.0.1 ::1|g" /etc/redis/redis.conf
+RUN	apk -U upgrade && \
+	apk add redis
 
 CMD	["redis-server", "--protected-mode", "no"]

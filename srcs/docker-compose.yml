@@ -44,8 +44,6 @@ services:
                 build: requirements/bonus/redis
                 image: redis
                 container_name: redis_container
-                volumes:
-                        - cache:/data
                 networks:
                         - localhost
                 restart: always
@@ -63,12 +61,6 @@ volumes:
       type: 'none'
       o: 'bind'
       device: '/home/nlocusso/data/mariadb/'
-  cache:
-    driver: local
-    driver_opts:
-      type: 'none'
-      o: 'bind'
-      device: '/home/nlocusso/data/redis/'
 
 networks:
         localhost:
