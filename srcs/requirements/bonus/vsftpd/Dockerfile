@@ -1,6 +1,6 @@
 FROM alpine:3.16.5
 
-RUN	apk -U upgrade && apk add --no-cache vsftpd openrc
+RUN	apk -U upgrade && apk add --no-cache vsftpd lftp shadow
 
 COPY	conf /etc/vsftpd.conf
 

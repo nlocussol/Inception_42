@@ -50,12 +50,15 @@ services:
         vsftpd:
                 build: requirements/bonus/vsftpd
                 image: vsftpd
+                container_name: vsftpd
                 env_file:
                         - .env
+                volumes:
+                        - dbdata:/volumes
                 ports:
                   - "20:20"
                   - "21:21"
-                container_name: vsftpd
+                  - "40000-40100:40000-40100"
                 restart: always
 
 
