@@ -47,6 +47,17 @@ services:
                 networks:
                         - localhost
                 restart: always
+        vsftpd:
+                build: requirements/bonus/vsftpd
+                image: vsftpd
+                env_file:
+                        - .env
+                ports:
+                  - "20:20"
+                  - "21:21"
+                container_name: vsftpd
+                restart: always
+
 
 volumes:
   dbdata:
