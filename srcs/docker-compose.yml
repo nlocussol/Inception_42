@@ -52,15 +52,15 @@ services:
                 image: vsftpd
                 container_name: vsftpd
                 env_file:
-                        - .env
+                      - .env
                 volumes:
-                        - wordpress:/volumes
+                      - wordpress:/volumes
                 ports:
-                  - "20:20"
-                  - "21:21"
-                    #- "40000-40100:40000-40100"
+                      - "20:20"
+                      - "21:21"
+                      - "40000-40100:40000-40100"
                 networks:
-                        - localhost
+                      - localhost
                 restart: always
 
 

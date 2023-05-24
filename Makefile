@@ -1,6 +1,6 @@
-IMAGES = nginx wordpress alpine:3.16 mariadb redis vsftpd
+IMAGES = nginx wordpress alpine:3.16 mariadb redis
 
-CONTAINER = nginx wordpress mariadb redis vsftpd
+CONTAINER = nginx wordpress mariadb redis
 
 all : build
 
