@@ -7,7 +7,7 @@ services:
                 ports:
                         - "443:443"
                 volumes:
-                        - dbdata:/volumes
+                        - wordpress:/volumes
                 depends_on:
                         - wordpress
                 env_file:
@@ -20,7 +20,7 @@ services:
                 image: wordpress
                 container_name: wordpress
                 volumes:
-                        - dbdata:/volumes
+                        - wordpress:/volumes
                 depends_on:
                         - mariadb
                         - redis
@@ -54,16 +54,18 @@ services:
                 env_file:
                         - .env
                 volumes:
-                        - dbdata:/volumes
+                        - wordpress:/volumes
                 ports:
                   - "20:20"
                   - "21:21"
-                  - "40000-40100:40000-40100"
+                    #- "40000-40100:40000-40100"
+                networks:
+                        - localhost
                 restart: always
 
 
 volumes:
-  dbdata:
+  wordpress:
     driver: local
     driver_opts:
       type: 'none'
