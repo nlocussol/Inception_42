@@ -4,12 +4,17 @@ write_enable=YES
 dirmessage_enable=YES
 xferlog_enable=YES
 connect_from_port_20=YES
+
 chroot_local_user=YES
 allow_writeable_chroot=YES
+
 listen=YES
+
 userlist_deny=NO
 userlist_enable=YES
 userlist_file=/etc/vsftpd/vsftpd.userlist
+
 seccomp_sandbox=NO
+
 pasv_min_port=40000
 pasv_max_port=40100
