@@ -21,8 +21,8 @@ clean:
 	docker-compose -f srcs/docker-compose.yml down
 
 volume:
-	sudo rm -rf /home/nlocusso/data/wordpress/*
-	sudo rm -rf /home/nlocusso/data/mariadb/*
+	sudo rm -rf /home/nlocusso/data/wordpress/
+	sudo rm -rf /home/nlocusso/data/mariadb/
 
 re: volume clean all
 

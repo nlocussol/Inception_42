@@ -1,6 +1,5 @@
 #!/bin/sh
 
-#wp core download --path='/volumes/wordpress/'
 cd /volumes/wordpress/
 
 wp config create --dbname=${DB_NAME} --dbuser=${DB_USER} --dbpass=${DB_PASSWD} --dbhost=mariadb
@@ -12,5 +11,7 @@ wp user create ${WP_USER} ${WP_USER_MAIL} --role=subscriber --user_pass=${WP_USE
 wp plugin install redis-cache --activate
 wp config set WP_REDIS_HOST "redis"
 wp redis enable
+
+wp plugin install pexlechris-adminer --activate
 
 exec php-fpm8 -F
