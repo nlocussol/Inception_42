@@ -62,21 +62,6 @@ services:
                 networks:
                       - localhost
                 restart: always
-                #adminer:
-                #build: requirements/bonus/adminer
-                #image: adminer
-                #container_name: adminer
-                #volumes:
-                #      - mariadb:/mariadb/
-                #      - wordpress:/wordpress/
-                #depends_on:
-                #        - wordpress
-                #        - mariadb
-                #networks:
-                #      - localhost
-                #restart: always
-
-
 
 volumes:
   wordpress:
