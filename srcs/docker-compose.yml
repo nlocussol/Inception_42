@@ -62,6 +62,29 @@ services:
                 networks:
                       - localhost
                 restart: always
+        adminer:
+                build: requirements/bonus/adminer
+                image: adminer
+                container_name: adminer
+                volumes:
+                      - wordpress:/volumes
+                depends_on:
+                      - wordpress
+        static_page:
+                build: requirements/bonus/static_page
+                image: static_page
+                container_name: static_page
+                volumes:
+                      - wordpress:/volumes
+                depends_on:
+                      - wordpress
+        cAdvisor:
+                build: requirements/bonus/cadvisor
+                image: cadvisor
+                container_name: cadvisor
+                ports:
+                      - "8080:8080"
+                restart: always
 
 volumes:
   wordpress:
