@@ -1,7 +1,7 @@
 FROM alpine:3.16
 
-COPY tools/start.sh /start.sh
+RUN apk -U upgrade && apk add php php-mysqli php-session
 
-WORKDIR /volumes
+COPY tools/start.sh /start.sh
 
 CMD ["sh", "/start.sh"]

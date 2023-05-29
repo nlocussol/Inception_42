@@ -1,6 +1,6 @@
-IMAGES = nginx wordpress alpine:3.16 mariadb redis vsftpd adminer static_page
+IMAGES = nginx wordpress alpine:3.16 mariadb redis vsftpd adminer static_page cadvisor
 
-CONTAINER = nginx wordpress mariadb redis vsftpd adminer static_page
+CONTAINER = nginx wordpress mariadb redis vsftpd adminer static_page cadvisor
 
 all : build
 
