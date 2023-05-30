@@ -7,6 +7,7 @@ all : build
 build:
 	mkdir -p /home/nlocusso/data/mariadb
 	mkdir -p /home/nlocusso/data/wordpress
+	mkdir -p /home/nlocusso/data/static
 	docker-compose -f srcs/docker-compose.yml up --build --detach
 	docker ps
 
@@ -23,6 +24,7 @@ clean:
 volume:
 	sudo rm -rf /home/nlocusso/data/wordpress/
 	sudo rm -rf /home/nlocusso/data/mariadb/
+	sudo rm -rf /home/nlocusso/data/static/
 
 re: volume clean all
 

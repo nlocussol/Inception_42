@@ -6,10 +6,13 @@ services:
                 container_name: nginx
                 ports:
                         - "443:443"
+                        - "80:80"
                 volumes:
                         - wordpress:/volumes
+                        - static:/static
                 depends_on:
                         - wordpress
+                        - static_page
                 env_file:
                         - .env
                 networks:
@@ -76,7 +79,7 @@ services:
                 image: static_page
                 container_name: static_page
                 volumes:
-                      - wordpress:/volumes
+                      - static:/volumes
                 depends_on:
                       - wordpress
         cAdvisor:
@@ -87,6 +90,11 @@ services:
                       - wordpress
                 ports:
                       - "8080:8080"
+                volumes:
+                      - /:/rootfs:ro
+                      - /var/run:/var/run:ro
+                      - /sys:/sys:ro
+                      - /var/lib/docker/:/var/lib/docker:ro
                 restart: always
 
 volumes:
@@ -102,6 +110,13 @@ volumes:
       type: 'none'
       o: 'bind'
       device: '/home/nlocusso/data/mariadb/'
+  static:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/home/nlocusso/data/static/'
+
 
 networks:
         localhost:
