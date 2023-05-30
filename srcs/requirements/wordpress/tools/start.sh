@@ -14,4 +14,6 @@ wp redis enable
 
 wp plugin install pexlechris-adminer --activate
 
+wp theme install iotix.zip --activate
+
 exec php-fpm8 -F

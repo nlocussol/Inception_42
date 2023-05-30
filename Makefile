@@ -15,11 +15,11 @@ stop:
 	docker-compose -f srcs/docker-compose.yml stop
 
 clean:
-	docker stop $(CONTAINER)
-	docker rm -f $(CONTAINER)
-	docker rmi -f $(IMAGES)
-	docker volume rm -f `docker volume ls`
-	docker-compose -f srcs/docker-compose.yml down
+	-docker stop $(CONTAINER)
+	-docker rm -f $(CONTAINER)
+	-docker rmi -f $(IMAGES)
+	-docker volume rm -f `docker volume ls`
+	-docker-compose -f srcs/docker-compose.yml down
 
 volume:
 	sudo rm -rf /home/nlocusso/data/wordpress/
